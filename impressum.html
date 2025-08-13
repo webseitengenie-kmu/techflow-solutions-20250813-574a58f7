@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum - Unternehmen</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">Unternehmen</a>
+      <div class="nav-legal">
+        <a href="index.html">← Zurück zur Startseite</a>
+      </div>
+    </div>
+  </nav>
+  
+  <main style="padding-top: 120px;">
+    <section class="legal-content">
+      <div class="container">
+        <h1 data-editable="legal-impressum-title">Impressum</h1>
+        <div class="legal-text" data-editable="legal-impressum-content">
+          <h3>Impressum</h3>
+<p><strong>TechFlow Solutions GmbH</strong><br>
+Musterstraße 123<br>
+10115 Berlin<br>
+Deutschland</p>
+
+<p><strong>Vertreten durch:</strong><br>
+Geschäftsführer: Max Mustermann</p>
+
+<p><strong>Kontakt:</strong><br>
+Telefon: +49 30 12345678<br>
+E-Mail: info@techflow-solutions.de</p>
+
+<p><strong>Registereintrag:</strong><br>
+Handelsregister: HRB 123456 B<br>
+Registergericht: Amtsgericht Berlin-Charlottenburg</p>
+
+<p><strong>Umsatzsteuer-ID:</strong><br>
+Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+DE123456789</p>
+
+<p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
+Max Mustermann<br>
+Musterstraße 123<br>
+10115 Berlin</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-legal">
+        <a href="index.html">Zurück zur Startseite</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <span>© 2025 Unternehmen</span>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="script.js"></script>
+
+<!-- Webseitengenie Editor Support -->
+<script>
+(function() {
+  // Only activate in editor mode
+  if (!window.location.search.includes('webseitengenie_editor=true')) return;
+  
+  // Store original content
+  const originalContent = new Map();
+  
+  // Listen for editor messages
+  window.addEventListener('message', function(event) {
+    if (event.source !== window.parent) return;
+    
+    const { type, elementId, content } = event.data;
+    
+    if (type === 'update-preview') {
+      const element = document.querySelector('[data-editable="' + elementId + '"]');
+      if (!element) return;
+      
+      // Store original
+      if (!originalContent.has(elementId)) {
+        originalContent.set(elementId, element.innerHTML);
+      }
+      
+      // Update with animation
+      element.style.transition = 'all 0.3s ease';
+      element.innerHTML = content;
+      element.style.backgroundColor = '#fef3c7';
+      
+      setTimeout(() => {
+        element.style.backgroundColor = '';
+      }, 300);
+    }
+    
+    if (type === 'restore-original') {
+      originalContent.forEach((content, id) => {
+        const el = document.querySelector('[data-editable="' + id + '"]');
+        if (el) el.innerHTML = content;
+      });
+    }
+  });
+  
+  // Signal ready
+  window.parent.postMessage({ type: 'preview-ready' }, '*');
+})();
+</script>
+</body>
+</html>
